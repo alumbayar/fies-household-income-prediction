@@ -1,0 +1,31 @@
+[project]
+name = "fies-income"
+version = "1.0.0"
+description = "Household income prediction on the Philippine Family Income and Expenditure Survey"
+requires-python = ">=3.11"
+
+[tool.setuptools]
+packages = ["fies_income"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-include = ["*.ipynb"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "D"]
+ignore = ["D100", "D104", "D103", "N803", "N806"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+"*.ipynb" = ["E501"]
+# Lookup keys must match the raw survey category strings verbatim.
+"fies_income/occupations.py" = ["E501"]
+"fies_income/features.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
